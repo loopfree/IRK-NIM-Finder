@@ -39,3 +39,8 @@ Jalankan
 
 1. npm install
 2. node index.js
+
+## Tampilan
+
+![Tampilan Pertama](./readme-related/view1.jpg)
+![Tampilan Kedua](./readme-related/view2.jpg)
