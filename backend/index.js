@@ -106,11 +106,11 @@ app.get("/api/:query", (req, res) => {
 
 			if (check.isJurusan) {
 				studentData.forEach((data) => {
-					check.jurusanKode.forEach(kode => {
+					check.jurusanKode.forEach((kode) => {
 						if (String(data[2]).substring(0, 3) === kode) {
 							result.push(data);
 						}
-					})
+					});
 				});
 
 				result = addJurusan(result);
@@ -128,11 +128,11 @@ app.get("/api/:query", (req, res) => {
 
 			if (check.isFakultas) {
 				studentData.forEach((data) => {
-					check.fakultasKode.forEach(kode => {
-						if ( String(data[1]).substring(0, 3) === kode ) {
+					check.fakultasKode.forEach((kode) => {
+						if (String(data[1]).substring(0, 3) === kode) {
 							result.push(data);
 						}
-					})
+					});
 				});
 
 				result = addJurusan(result);
@@ -158,14 +158,14 @@ app.get("/api/:query", (req, res) => {
 			let check = checkJurusan(input1);
 			if (check.isJurusan) {
 				studentData.forEach((data) => {
-					check.jurusanKode.forEach(kode => {
+					check.jurusanKode.forEach((kode) => {
 						if (
 							String(data[2]).substring(0, 3) == kode &&
 							String(data[2]).substring(3, 5) == input2
 						) {
 							result.push(data);
 						}
-					})
+					});
 				});
 				result = addJurusan(result);
 
@@ -179,14 +179,14 @@ app.get("/api/:query", (req, res) => {
 			check = checkFakultas(input1);
 			if (check.isFakultas) {
 				studentData.forEach((data) => {
-					check.fakultasKode.forEach(kode => {
+					check.fakultasKode.forEach((kode) => {
 						if (
 							String(data[1]).substring(0, 3) == kode &&
 							String(data[1]).substring(3, 5) == input2
 						) {
 							result.push(data);
 						}
-					})
+					});
 				});
 				result = addJurusan(result);
 
@@ -223,14 +223,11 @@ app.get("/api/:query", (req, res) => {
 
 			if (firstArr.length === 0 && jurusanCheck.isJurusan) {
 				studentData.forEach((data) => {
-					jurusanCheck.jurusanKode.forEach(kode => {
-						if (
-							String(data[2]).substring(0, 3) ===
-							kode
-						) {
+					jurusanCheck.jurusanKode.forEach((kode) => {
+						if (String(data[2]).substring(0, 3) === kode) {
 							firstArr.push(data);
 						}
-					})
+					});
 				});
 			}
 
@@ -240,14 +237,11 @@ app.get("/api/:query", (req, res) => {
 
 			if (firstArr.length === 0 && fakultasCheck.isFakultas) {
 				studentData.forEach((data) => {
-					fakultasCheck.fakultasKode.forEach(kode => {
-						if (
-							String(data[1]).substring(0, 3) ===
-							kode
-						) {
+					fakultasCheck.fakultasKode.forEach((kode) => {
+						if (String(data[1]).substring(0, 3) === kode) {
 							firstArr.push(data);
 						}
-					})
+					});
 				});
 			}
 			if (firstArr.length === 0) {
@@ -277,13 +271,11 @@ app.get("/api/:query", (req, res) => {
 
 			if (secondArr.length === 0 && check2.isJurusan) {
 				studentData.forEach((data) => {
-					check2.jurusanKode.forEach(kode => {
-						if (
-							String(data[2]).substring(0, 3) === kode
-						) {
+					check2.jurusanKode.forEach((kode) => {
+						if (String(data[2]).substring(0, 3) === kode) {
 							secondArr.push(data);
 						}
-					})
+					});
 				});
 			}
 
@@ -291,13 +283,11 @@ app.get("/api/:query", (req, res) => {
 
 			if (secondArr.length === 0 && check2.isFakultas) {
 				studentData.forEach((data) => {
-					check2.fakultasKode.forEach(kode => {
-						if (
-							String(data[1]).substring(0, 3) === kode
-						) {
+					check2.fakultasKode.forEach((kode) => {
+						if (String(data[1]).substring(0, 3) === kode) {
 							secondArr.push(data);
 						}
-					})
+					});
 				});
 			}
 			if (secondArr.length === 0) {
@@ -327,13 +317,11 @@ app.get("/api/:query", (req, res) => {
 
 			if (thirdArr.length === 0 && check3.isJurusan) {
 				studentData.forEach((data) => {
-					check3.jurusanKode.forEach(kode => {
-						if (
-							String(data[2]).substring(0, 3) === kode
-						) {
+					check3.jurusanKode.forEach((kode) => {
+						if (String(data[2]).substring(0, 3) === kode) {
 							thirdArr.push(data);
 						}
-					})
+					});
 				});
 			}
 
@@ -341,13 +329,11 @@ app.get("/api/:query", (req, res) => {
 
 			if (thirdArr.length === 0 && check3.isFakultas) {
 				studentData.forEach((data) => {
-					check3.fakultasKode.forEach(kode => {
-						if (
-							String(data[1]).substring(0, 3) === kode
-						) {
+					check3.fakultasKode.forEach((kode) => {
+						if (String(data[1]).substring(0, 3) === kode) {
 							thirdArr.push(data);
 						}
-					})
+					});
 				});
 			}
 			if (thirdArr.length === 0) {
@@ -396,24 +382,6 @@ app.get("/api/:query", (req, res) => {
 					}
 				}
 			}
-
-			firstArr.forEach(data => {
-				if(String(data[0]).toLowerCase().includes("istri")) {
-					console.log(`yes1 ${data[0]}`)
-				}
-			})
-
-			secondArr.forEach(data => {
-				if(String(data[0]).toLowerCase().includes("istri")) {
-					console.log(`yes2 ${data[0]}`)
-				}
-			})
-
-			thirdArr.forEach(data => {
-				if(String(data[0]).toLowerCase().includes("istri")) {
-					console.log(`yes3 ${data[0]}`)
-				}
-			})
 		}
 	}
 

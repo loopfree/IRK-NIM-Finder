@@ -7,7 +7,7 @@ async function getData(url) {
 }
 
 const searchBar = document.querySelector("input[type=text]");
-console.log(searchBar);
+// console.log(searchBar);
 const details = document.getElementsByClassName("details")[0];
 
 const debounce = (func, delay) => {
@@ -20,7 +20,7 @@ const debounce = (func, delay) => {
 
 const searchFunc = debounce(async () => {
 	const response = await getData(`/api/${searchBar.value.toLowerCase()}`);
-	console.log(response);
+	// console.log(response);
 	let studentList = "";
 	response.data.forEach((data) => {
 		let nim1 = "";
