@@ -26,14 +26,17 @@ function checkJurusan(input) {
 		if (key.toLowerCase() === input) {
 			isJurusan = true;
 			jurusanKode.push(String(jurusanCode[key]));
+			break;
 		}
 	}
 
-	for (const key in jurusanList) {
-		const value = jurusanList[key];
-		if (String(value).toLowerCase().includes(input)) {
-			isJurusan = true;
-			jurusanKode.push(key);
+	if (jurusanKode.length === 0) {
+		for (const key in jurusanList) {
+			const value = jurusanList[key];
+			if (String(value).toLowerCase().includes(input)) {
+				isJurusan = true;
+				jurusanKode.push(key);
+			}
 		}
 	}
 
@@ -55,11 +58,13 @@ function checkFakultas(input) {
 		}
 	}
 
-	for (const key in fakultasList) {
-		const value = fakultasList[key];
-		if (String(value).toLowerCase().includes(input)) {
-			isFakultas = true;
-			fakultasKode.push(key);
+	if (fakultasKode.length === 0) {
+		for (const key in fakultasList) {
+			const value = fakultasList[key];
+			if (String(value).toLowerCase().includes(input)) {
+				isFakultas = true;
+				fakultasKode.push(key);
+			}
 		}
 	}
 
@@ -343,42 +348,20 @@ app.get("/api/:query", (req, res) => {
 					}
 				});
 			}
-
-			let smallerArr;
-			let biggerArr;
-
-			if (firstArr.length < secondArr.length) {
-				smallerArr = firstArr;
-				biggerArr = secondArr;
-			} else {
-				smallerArr = secondArr;
-				biggerArr = firstArr;
-			}
-
 			let tempArr = [];
 
-			let index = 0;
-
-			for (let i = 0; i < smallerArr.length; ++i) {
-				for (let j = 0; j < biggerArr.length; ++j) {
-					if (smallerArr[i][0] === biggerArr[j][0]) {
-						tempArr.push(smallerArr[i]);
+			for (let i = 0; i < firstArr.length; ++i) {
+				for (let j = 0; j < secondArr.length; ++j) {
+					if (firstArr[i][1] === secondArr[j][1]) {
+						tempArr.push(firstArr[i]);
 					}
 				}
 			}
 
-			if (tempArr.length < thirdArr.length) {
-				smallerArr = tempArr;
-				biggerArr = thirdArr;
-			} else {
-				smallerArr = thirdArr;
-				biggerArr = tempArr;
-			}
-
-			for (let i = 0; i < smallerArr.length; ++i) {
-				for (let j = 0; j < biggerArr.length; ++j) {
-					if (smallerArr[i][0] === biggerArr[j][0]) {
-						result.push(smallerArr[i]);
+			for (let i = 0; i < tempArr.length; ++i) {
+				for (let j = 0; j < thirdArr.length; ++j) {
+					if (tempArr[i][1] === thirdArr[j][1]) {
+						result.push(tempArr[i]);
 					}
 				}
 			}
@@ -393,6 +376,6 @@ app.get("/api/:query", (req, res) => {
 
 const port = process.env.PORT || 8000;
 
-app.listen("8000", () => {
-	console.log("Listening at 8000");
+app.listen(port, () => {
+	console.log(`Listening at ${port}`);
 });
