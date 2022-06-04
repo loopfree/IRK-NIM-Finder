@@ -95,12 +95,27 @@ app.get("/api/:query", (req, res) => {
 
 	if (isNumber) {
 		studentData.forEach((data) => {
-			if (String(data[2]).indexOf(query) !== -1) {
+			if (
+				String(data[2]).indexOf(query) !== -1 ||
+				String(data[1]).indexOf(query) !== -1
+			) {
 				result.push(data);
 			}
 		});
 	} else {
-		const splitQuery = query.split(" ");
+		const splitQuery = query.match(/\\?.|^$/g).reduce(
+			(p, c) => {
+				if (c === '"') {
+					p.quote ^= 1;
+				} else if (!p.quote && c === " ") {
+					p.a.push("");
+				} else {
+					p.a[p.a.length - 1] += c.replace(/\\(.)/, "$1");
+				}
+				return p;
+			},
+			{ a: [""] }
+		).a;
 		if (splitQuery.length == 1) {
 			input = splitQuery[0];
 			/**
